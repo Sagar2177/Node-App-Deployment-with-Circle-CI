@@ -1,10 +1,10 @@
 version: 2 # use CircleCI 2.0
 jobs: # a collection of steps
-  build: # runs not using Workflows must have a `build` job as entry point
+  build:
     working_directory: ~/test-app # directory where steps will run
     docker: # run the steps with Docker
       - image: circleci/node:14.0 # ...with this image as the primary container; this is where all `steps` will run
-    
+
     steps: # a collection of executable commands
       - checkout # special step to check out source code to working directory
       - run:
@@ -21,8 +21,8 @@ jobs: # a collection of steps
           paths:
             - ./node_modules
       - add_ssh_keys:
-            fingerprints:
+          fingerprints:
                 - "2c:11:9c:9a:2f:da:2f:71:52:16:d6:67:8e:e0:f3:ee"
-  - deploy:
-        name: deployment
-        command: ssh -o "StrictHostKeyChecking no" root@68.183.90.186 "cd ~ && rm -rf test-app && git clone https://github.com/Sagar2177/Node-App-Deployment-with-Circle-CI.git test-app && cd test-app && sh post_deployment.sh "
+      - deploy:
+          name: deployment
+          command: ssh -o "StrictHostKeyChecking no" root@68.183.90.186 "cd ~ && rm -rf test-app && git clone https://github.com/Sagar2177/Node-App-Deployment-with-Circle-CI.git test-app && cd test-app && sh post_deployment.sh "
