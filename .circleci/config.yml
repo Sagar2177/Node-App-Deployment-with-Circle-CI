@@ -3,6 +3,8 @@ version: 2.1
 jobs: # a collection of steps
   build: # runs not using Workflows must have a `build` job as entry point
     working_directory: ~/test-app
+    docker: # run the steps with Docker
+      - image: circleci/node:12.6.0 # ...with this image as the primary container; this is where all `steps` will run
     steps: # a collection of executable commands
       - run:
           name: update-npm
