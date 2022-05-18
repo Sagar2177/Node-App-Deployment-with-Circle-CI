@@ -1,7 +1,7 @@
 #!/bin/bash
 echo ‘installing requirements…’ 
-npm install ./test-app
+npm install 
 echo ‘start server…’
-forever start -c “npm start” ./test-app
+forever start -c “npm start” 
 echo ‘started server. ending SSH session..’
 exit
